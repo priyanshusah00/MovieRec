@@ -5,13 +5,42 @@ const Watchlist = () => {
   const [watchlist, setWatchlist] = useState([]);
 
   useEffect(() => {
-    setWatchlist(JSON.parse(localStorage.getItem("watchlist")) || []);
+    // Load watchlist with ratings
+    const savedWatchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+    setWatchlist(savedWatchlist.map(movie => ({
+      ...movie,
+      rating: movie.rating || 0
+    })));
   }, []);
 
   const removeFromWatchlist = (id) => {
     const updatedList = watchlist.filter((movie) => movie.id !== id);
     setWatchlist(updatedList);
     localStorage.setItem("watchlist", JSON.stringify(updatedList));
+  };
+
+  const handleRating = (movieId, rating) => {
+    const updatedList = watchlist.map(movie => 
+      movie.id === movieId ? { ...movie, rating } : movie
+    );
+    setWatchlist(updatedList);
+    localStorage.setItem("watchlist", JSON.stringify(updatedList));
+  };
+
+  const StarRating = ({ rating, onRate }) => {
+    return (
+      <div className="star-rating">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <span
+            key={star}
+            onClick={() => onRate(star)}
+            className={`star ${star <= rating ? 'filled' : ''}`}
+          >
+            {star <= rating ? '★' : '☆'}
+          </span>
+        ))}
+      </div>
+    );
   };
 
   return (
@@ -22,9 +51,15 @@ const Watchlist = () => {
           <p>No movies added yet!</p>
         ) : (
           watchlist.map((movie) => (
-            <div key={movie.id}>
+            <div key={movie.id} className="watchlist-item">
               <MovieCard2 movie={movie} />
-              <button className="watchlistButton" onClick={() => removeFromWatchlist(movie.id)}>Remove</button>
+              <StarRating 
+                rating={movie.rating} 
+                onRate={(rating) => handleRating(movie.id, rating)} 
+              />
+              <button className="watchlistButton" onClick={() => removeFromWatchlist(movie.id)}>
+                Remove
+              </button>
             </div>
           ))
         )}

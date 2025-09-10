@@ -20,9 +20,22 @@ body {
 }
 
 .search-input {
-  padding: 8px;
-  width: 300px;
+  padding: 12px 18px;
+  width: 320px;
   margin: 20px;
+  border: 2px solid #00d5ff;
+  border-radius: 25px;
+  background: #23272f;
+  color: #fff;
+  font-size: 16px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+  box-shadow: 0 2px 8px rgba(0,213,255,0.08);
+}
+
+.search-input:focus {
+  border-color: #ff5722;
+  box-shadow: 0 0 8px #ff5722;
 }
 
 .movie-grid {
@@ -98,4 +111,110 @@ button {
 }
 .img{
   width: 24px;
+}
+
+
+/* ...existing code... */
+
+/* Add these new styles after your existing styles */
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+}
+
+.sort-select {
+  padding: 12px 18px;
+  border: 2px solid #00d5ff;
+  border-radius: 25px;
+  background: #23272f;
+  color: #fff;
+  font-size: 16px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+  box-shadow: 0 2px 8px rgba(0,213,255,0.08);
+}
+
+.sort-select:focus {
+  border-color: #ff5722;
+  box-shadow: 0 0 8px #ff5722;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.error {
+  color: #ff5722;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  align-items: center;
+  color: #fff;
+}
+
+.pagination-btn {
+  padding: 10px 15px;
+  border: none;
+  background: #00d5ff;
+  color: white;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, background 0.3s;
+}
+
+.pagination-btn:hover {
+  background: #ff5722;
+  transform: scale(1.1);
+}
+
+.pagination-btn:disabled {
+  background: #333;
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+/* ...existing code... */
+
+.star-rating {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin: 10px 0;
+}
+
+.star {
+  cursor: pointer;
+  font-size: 24px;
+  color: #666;
+  transition: color 0.2s ease-in-out;
+}
+
+.star:hover {
+  color: #00d5ff;
+}
+
+.star.filled {
+  color: #00d5ff;
+}
+
+.watchlist-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
